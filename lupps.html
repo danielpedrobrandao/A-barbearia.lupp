@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lupp's BarBearia | Estilo e Tradição</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --destaque: #8da15b; /* Verde oliva/musgo para um ar mais sofisticado */
+            --branco: #ffffff;
+            --bg: #0d0d0d;
+            --card: #151515;
+            --texto: #e0e0e0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--bg); color: var(--texto); overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* Menu de Navegação */
+        nav { position: fixed; width: 100%; padding: 10px 50px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.95); z-index: 1000; border-bottom: 2px solid var(--destaque); }
+        .logo-nav { height: 60px; width: auto; }
+        
+        nav ul { display: flex; list-style: none; gap: 30px; }
+        nav a { text-decoration: none; color: #fff; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; transition: 0.3s; }
+        nav a:hover { color: var(--destaque); }
+
+        /* Hero Section */
+        .hero { height: 100vh; background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1512690196236-d5a743f19a5a?auto=format&fit=crop&w=1500&q=80'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: 5px solid var(--destaque); }
+        .logo-hero { width: 250px; margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); }
+        .hero h1 { font-family: 'Oswald', sans-serif; font-size: 4.5rem; color: var(--branco); line-height: 1; margin-bottom: 15px; text-transform: uppercase; }
+        .hero h1 span { color: var(--destaque); }
+        .hero p { font-size: 1.1rem; letter-spacing: 5px; margin-bottom: 35px; color: var(--branco); font-weight: 300; }
+
+        .btn { background: var(--destaque); color: #fff; padding: 18px 45px; text-decoration: none; font-weight: 800; border-radius: 0; transition: 0.5s; text-transform: uppercase; border: 2px solid var(--destaque); }
+        .btn:hover { background: transparent; color: var(--destaque); transform: translateY(-5px); }
+
+        /* Seções Gerais */
+        section { padding: 100px 10%; }
+        h2 { font-family: 'Oswald', sans-serif; font-size: 3.5rem; color: var(--destaque); text-align: center; margin-bottom: 50px; text-transform: uppercase; }
+
+        /* Especializações */
+        .grid-especialidades { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; }
+        .esp-item i { font-size: 3.5rem; color: var(--destaque); margin-bottom: 20px; }
+        .esp-item h3 { margin-bottom: 10px; color: var(--branco); font-family: 'Oswald', sans-serif; text-transform: uppercase; font-size: 1.5rem; }
+
+        /* Serviços */
+        .grid-servicos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .servico-box { position: relative; overflow: hidden; border: 1px solid #222; height: 400px; }
+        .servico-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; filter: grayscale(100%); }
+        .overlay { position: absolute; bottom: 0; width: 100%; height: 60%; background: linear-gradient(transparent, #000); display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; transition: 0.5s; }
+        .servico-box:hover img { transform: scale(1.1); filter: grayscale(20%); }
+        .overlay h3 { color: var(--destaque); font-family: 'Oswald', sans-serif; font-size: 1.8rem; text-transform: uppercase; }
+
+        /* Números Dinâmicos */
+        .stats { background: var(--destaque); color: #fff; display: flex; justify-content: space-around; padding: 60px 10%; text-align: center; }
+        .stat-item h3 { font-family: 'Oswald', sans-serif; font-size: 3.5rem; line-height: 1; }
+        .stat-item p { font-weight: 900; text-transform: uppercase; font-size: 0.9rem; }
+
+        /* Contato */
+        .contato-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .info-contato h3 { font-family: 'Oswald', sans-serif; font-size: 2.2rem; color: var(--destaque); margin-bottom: 25px; text-transform: uppercase; }
+        .info-contato p { margin-bottom: 15px; display: flex; align-items: center; gap: 15px; font-size: 1.1rem; }
+        .info-contato i { color: var(--destaque); width: 25px; font-size: 1.2rem; }
+        .mapa-box iframe { width: 100%; height: 350px; border: 2px solid var(--destaque); filter: grayscale(1) invert(0.92); }
+
+        /* WhatsApp */
+        .zap { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: #fff; width: 65px; height: 65px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 35px; z-index: 1000; box-shadow: 0 5px 20px rgba(0,0,0,0.8); transition: 0.3s; }
+
+        @media (max-width: 768px) {
+            nav { padding: 10px 20px; }
+            nav ul { display: none; }
+            .hero h1 { font-size: 3rem; }
+            .logo-hero { width: 180px; }
+            .contato-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <img src="img.logo.lupps.jpg" alt="Logo Lupps" class="logo-nav">
+        <ul>
+            <li><a href="#">Início</a></li>
+            <li><a href="#especialidades">Diferenciais</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <img src="img.logo.lupps.jpg" alt="Lupps Logo" class="logo-hero" data-aos="zoom-in">
+        <p data-aos="fade-up" data-aos-delay="200">CERVEJA GELADA • CORTE DE ELITE</p>
+        <h1 data-aos="fade-up" data-aos-delay="400">TRADIÇÃO EM <span>CADA CORTE</span></h1>
+        <a href="https://wa.me/5547997322590" class="btn" data-aos="fade-up" data-aos-delay="600">RESERVAR CADEIRA</a>
+    </section>
+
+    <section id="especialidades">
+        <h2 data-aos="fade-up">Diferenciais</h2>
+        <div class="grid-especialidades">
+            <div class="esp-item" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-beer"></i>
+                <h3>Bar & Lúpulo</h3>
+                <p>O melhor do lúpulo para acompanhar o seu momento.</p>
+            </div>
+            <div class="esp-item" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-razor"></i>
+                <h3>Corte Premium</h3>
+                <p>Especialistas em degradês e cortes clássicos masculinos.</p>
+            </div>
+            <div class="esp-item" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-soap"></i>
+                <h3>Barboterapia</h3>
+                <p>Toalha quente e massagem facial para uma experiência relaxante.</p>
+            </div>
+            <div class="esp-item" data-aos="fade-up" data-aos-delay="400">
+                <i class="fas fa-crown"></i>
+                <h3>Qualidade Real</h3>
+                <p>Tratamento digno de rei com produtos de primeira linha.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="stats">
+        <div class="stat-item"><h3>+10</h3><p>Anos de Experiência</p></div>
+        <div class="stat-item"><h3>100%</h3><p>Qualidade Lupp's</p></div>
+        <div class="stat-item"><h3>+8k</h3><p>Barbas Alinhadas</p></div>
+    </div>
+
+    <section id="servicos">
+        <h2 data-aos="fade-up">Nossos Serviços</h2>
+        <div class="grid-servicos">
+            <div class="servico-box" data-aos="zoom-in-up">
+                <img src="https://images.unsplash.com/photo-1593702295094-ada35bc15982?auto=format&fit=crop&w=600&q=80">
+                <div class="overlay">
+                    <h3>Corte & Estilo</h3>
+                    <p>Design moderno para o seu perfil.</p>
+                </div>
+            </div>
+            <div class="servico-box" data-aos="zoom-in-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=600&q=80">
+                <div class="overlay">
+                    <h3>Barba Lupp's</h3>
+                    <p>Alinhamento, hidratação e cuidados.</p>
+                </div>
+            </div>
+            <div class="servico-box" data-aos="zoom-in-up" data-aos-delay="400">
+                <img src="https://images.unsplash.com/photo-1532710093739-9470acff878f?auto=format&fit=crop&w=600&q=80">
+                <div class="overlay">
+                    <h3>Combo Relax</h3>
+                    <p>Cabelo, barba e uma cerveja artesanal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato">
+        <h2 data-aos="fade-up">Onde Estamos</h2>
+        <div class="contato-container">
+            <div class="info-contato" data-aos="fade-right">
+                <h3>Vem pra Lupp's</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Joinville, SC</p>
+                <p><i class="fab fa-whatsapp"></i> (47) 99732-2590</p>
+                <p><i class="fas fa-clock"></i> Terça a Sábado: 09h às 21h</p>
+                <p><i class="fab fa-instagram"></i> @roneikessler</p>
+                <br>
+                <a href="https://wa.me/5547997322590" class="btn">CHAMAR AGORA</a>
+            </div>
+            <div class="mapa-box" data-aos="fade-left">
+                <iframe src="http://googleusercontent.com/maps.google.com/3" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 40px; background: #050505; font-size: 0.8rem; border-top: 2px solid var(--destaque); color: #666;">
+        © 2026 LUPP'S BARBEARIA | JOINVILLE - SC
+    </footer>
+
+    <a href="https://wa.me/5547997322590" class="zap" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+    </script>
+</body>
+</html>
